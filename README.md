@@ -40,6 +40,9 @@ define('DB_NAME', 'if0_123456789_movie');
 define('DB_USER', 'if0_123456789_user');
 define('DB_PASS', 'আপনার_পাসওয়ার্ড');
 ```
+> ⚠️ **InfinityFree নোট:** DB User আলাদা করে তৈরির দরকার নেই — **Client Area → Manage → "MySQL Details" → Show** এ ৪টাই পাবেন: Host (`sql###.infinityfree.com` — localhost না!), Username (`if0_123456789`), Password (**হোস্টিং অ্যাকাউন্টের পাস** — ক্লায়েন্ট এরিয়ার লগইন পাস না!), DB Name (prefix সহ)।
+
+
 
 **B৫) ইনস্টল:** ব্রাউজারে `https://YOUR-SUBDOMAIN/install.php` → অ্যাডমিন ইউজার/পাস → 🚀 Install → শেষে **install.php ডিলিট**
 

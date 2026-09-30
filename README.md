@@ -19,13 +19,39 @@
 3. ব্রাউজারে `/install.php` খুলুন → অ্যাডমিন তৈরি
 4. সাইট: `/` — অ্যাডমিন: `/admin/login.php`
 
-### B. ফ্রি হোস্টিংয়ে (InfinityFree / 000webhost / যেকোনো cPanel)
-1. অ্যাকাউন্ট খুলে **MySQL ডাটাবেজ + ইউজার তৈরি** করুন (প্যানেলেই, PHP থেকে নয়)
-2. `movie-site-deploy.zip` **File Manager-এ আপলোড → Extract** (`public_html/`-এ)
-3. `config/config.php` এডিট করে `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` বসান
-   - হোস্টিংয়ে `DB_HOST` সাধারণত `localhost` নয় — প্যানেলে যা দেখায় সেটাই (যেমন `sql123.infinityfree.com`)
-4. ব্রাউজারে `https://YOUR-DOMAIN/install.php` খুলুন → অ্যাডমিন ইউজার/পাস দিন
-5. ✅ শেষ হলে **`install.php` মুছে ফেলুন** (নিরাপত্তার জন্য)
+### B. ফ্রি হোস্টিংয়ে — InfinityFree (সবচেয়ে সহজ, PHP 8.3 + MySQL + SSL ফ্রি)
+
+**B১) অ্যাকাউন্ট:** infinityfree.com → Sign Up → ইমেইল ভেরিফাই → **Create Account** → সাবডোমেইন দিন (যেমন `movienurnobi`) → শেষে `*.infinityfreeapp.com` পাবেন
+
+**B২) ডাটাবেজ** (কন্ট্রোল প্যানেল → **MySQL Databases**):
+1. **Create Database** (নাম: `movie`) → হবে কিছু এমন: `if0_123456789_movie`
+2. **Create Username** (ইউজার + পাসওয়ার্ড দিন)
+3. **Add User to Database** → সব প্রিভিলেজ অনুমোদন
+4. 📝 এই **৪টা** কপি করুন: **DB Name, DB User, DB Password, MySQL Host** (সেই পেজেই `SQL Host` দেখাবে, কিছু এমন `sql123.infinityfree.com` — এটা `localhost` **নয়**!)
+
+**B৩) ফাইল আপলোড** (প্যানেল → **Online File Manager**):
+1. `htdocs/` ফোল্ডারে ঢুকুন
+2. `movie-site-deploy.zip` **Upload** করুন → ZIP সিলেক্ট → **Extract** → ফাইলগুলো `htdocs/`-এ সরাসরি বসবে (ভেতরের কোনো সাব-ফোল্ডারে নয়)
+
+**B৪) config এডিট:** File Manager → `config/config.php` → Edit → **লাইন ১৪-১৭**-এর ৪টা `define`-এর **ভ্যালু** বদলান (`define(...)` অক্ষত রাখুন):
+```php
+define('DB_HOST', 'sql123.infinityfree.com');  // B২-এর MySQL Host
+define('DB_NAME', 'if0_123456789_movie');
+define('DB_USER', 'if0_123456789_user');
+define('DB_PASS', 'আপনার_পাসওয়ার্ড');
+```
+
+**B৫) ইনস্টল:** ব্রাউজারে `https://YOUR-SUBDOMAIN/install.php` → অ্যাডমিন ইউজার/পাস → 🚀 Install → শেষে **install.php ডিলিট**
+
+**B৬) চালু:** `/admin/login.php` → Change Password (ডিফল্ট `admin123` বদলান) → Site Settings-এ লোগো/নাম → মুভি যোগ
+
+> টিপস: প্যানেলে PHP **8.1+** সিলেক্ট (PHP Configuration), SSL চাইলে প্যানেলের SSL অপশন অন করুন, সাইট নিষ্ক্রিয় থাকলে পেইড হোস্টে তোলেন।
+
+### B-বিকল্প: অন্য যেকোনো cPanel হোস্ট (000webhost / AwardSpace / পেইড)
+1. প্যানেল → MySQL Databases → DB + user তৈরি (`public_html`-এর হোস্টে)
+2. ZIP আপলোড → Extract → `public_html`-এ
+3. `config/config.php`-তে ৪টা DB ভ্যালু বসান (উপরের মতোই)
+4. `/install.php` চালান → শেষে ডিলিট
 
 > PHP **8.1+** সিলেক্ট করুন (প্যানেলে থাকলে)। প্রয়োজনীয় এক্সটেনশন: `pdo_mysql, mbstring, openssl, curl, fileinfo` — সাধারণ হোস্টিংয়ে ডিফল্ট থাকে।
 

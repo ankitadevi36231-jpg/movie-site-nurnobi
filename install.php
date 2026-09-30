@@ -27,12 +27,29 @@ function mv_install_connect(bool $withDb): PDO {
 }
 
 $pdo = null;
+/* ১) আগে সরাসরি ডাটাবেজসহ কানেক্ট চেষ্টা — হোস্টিংয়ে ডাটাবেজ প্যানেল থেকে আগে তৈরি করা থাকে */
 try {
-    $pdo = mv_install_connect(false);
-    $pdo->exec('CREATE DATABASE IF NOT EXISTS `' . str_replace('`', '', DB_NAME) . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
     $pdo = mv_install_connect(true);
 } catch (Throwable $e) {
-    $err = 'MySQL কানেক্ট হচ্ছে না! XAMPP Control Panel থেকে <b>MySQL → Start</b> করুন। (cPanel হলে config/config.php-এ ডেটাবেজ ইউজার/পাসওয়ার্ড ঠিক করুন)<br><small>' . esc($e->getMessage()) . '</small>';
+    $pdo = null;
+}
+/* ২) না হলে সার্ভারে কানেক্ট করে ডাটাবেজ তৈরির চেষ্টা (XAMPP localhost-এ এখানেই কাজ করে) */
+if ($pdo === null) {
+    try {
+        $srv = mv_install_connect(false);
+        try {
+            $srv->exec('CREATE DATABASE IF NOT EXISTS `' . str_replace('`', '', DB_NAME) . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+        } catch (Throwable $e) {
+            /* শেয়ার্ড হোস্টিংয়ে CREATE DATABASE পারমিশন থাকে না — ডাটাবেজ আগে থেকেই তৈরি, তাই উপেক্ষা */
+        }
+        $pdo = mv_install_connect(true);
+    } catch (Throwable $e) {
+        $err = 'MySQL ডাটাবেজে কানেক্ট হচ্ছে না!<br>'
+             . '• <b>লোকালে:</b> XAMPP Control Panel থেকে <b>MySQL → Start</b> করুন।<br>'
+             . '• <b>হোস্টিংয়ে:</b> কন্ট্রোল প্যানেল থেকে MySQL ডাটাবেজ + ইউজার তৈরি করে '
+             . '<code>config/config.php</code>-তে DB_NAME / DB_USER / DB_PASS / DB_HOST বসান।'
+             . '<br><small>' . esc($e->getMessage()) . '</small>';
+    }
 }
 
 /* ---------- টেবিল তৈরি ---------- */

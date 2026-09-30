@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/vercel-landing.html", "permanent": false },
+    { "source": "/index.php", "destination": "/vercel-landing.html", "permanent": false },
+    { "source": "/(.*).php", "destination": "/vercel-landing.html", "permanent": false },
+    { "source": "/admin", "destination": "/vercel-landing.html", "permanent": false },
+    { "source": "/admin/", "destination": "/vercel-landing.html", "permanent": false }
+  ]
+}

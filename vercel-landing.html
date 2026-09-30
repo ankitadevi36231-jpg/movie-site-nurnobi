@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MovieVerse — সাইট এখনো অনলাইনে চালু হয়নি</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: #0b0f17; color: #e8ecf3; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; line-height: 1.7; }
+  .box { max-width: 640px; width: 100%; background: #141c2b; border: 1px solid #233048; border-radius: 18px; padding: 38px 32px; box-shadow: 0 18px 50px rgba(0,0,0,.5); text-align: center; }
+  .logo { font-size: 42px; margin-bottom: 10px; }
+  h1 { font-size: 26px; color: #fff; margin-bottom: 6px; }
+  .tag { color: #f5a524; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; }
+  p { color: #9aa5b8; font-size: 15px; margin-bottom: 14px; }
+  .why { background: #101624; border: 1px solid #233048; border-radius: 12px; padding: 16px; text-align: left; margin: 18px 0; font-size: 14px; color: #b9c2d3; }
+  .why b { color: #fff; }
+  .why li { margin: 6px 0 6px 18px; }
+  .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 14.5px; text-decoration: none; }
+  .red { background: linear-gradient(135deg,#e50914,#ff4b3e); color: #fff; box-shadow: 0 6px 18px rgba(229,9,20,.35); }
+  .ghost { background: rgba(255,255,255,.06); border: 1px solid #233048; color: #cbd3e1; }
+  .small { font-size: 12.5px; color: #5b6470; margin-top: 22px; }
+  code { background: #0f1524; padding: 2px 7px; border-radius: 6px; color: #4f9cff; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">🎬</div>
+  <div class="tag">MovieVerse</div>
+  <h1>সাইটটি এখনো অনলাইনে চালু হয়নি</h1>
+  <p>এই প্রজেক্টটি <b>PHP + MySQL</b> দিয়ে তৈরি — এটা চলতে হলে PHP-সাপোর্টেড হোস্টিং এবং ডাটাবেজ লাগে। Vercel শুধু static ও JavaScript সাইট চালায়, তাই এখানে মূল সাইট চলবে না।</p>
+
+  <div class="why">
+    <b>কেন ব্ল্যাংক দেখাচ্ছিল?</b>
+    <ul>
+      <li>Vercel-এ PHP execute হয় না — শুধু সোর্স কোড দেখাচ্ছিল (এখন সেটাও বন্ধ)</li>
+      <li>Vercel-এ MySQL ডাটাবেজ নেই</li>
+      <li>প্রজেক্টে কোনো খুঁত নেই — localhost-এ সম্পূর্ণ কাজ করছে</li>
+    </ul>
+  </div>
+
+  <p><b>সাইট অনলাইনে চালাতে</b> যেকোনো PHP+MySQL হোস্টিংয়ে (cPanel / InfinityFree / Hostinger ইত্যাদি) <code>movie-site-deploy.zip</code> আপলোড করে <code>install.php</code> চালালেই হবে।</p>
+
+  <div class="btns">
+    <a class="btn red" href="https://github.com/ankitadevi36231-jpg/movie-site-nurnobi" target="_blank" rel="noopener">📂 GitHub রিপোজিটরি</a>
+    <a class="btn ghost" href="https://github.com/ankitadevi36231-jpg/movie-site-nurnobi#readme" target="_blank" rel="noopener">📖 সোর্স কোড দেখুন</a>
+  </div>
+
+  <div class="small">সোর্স কোড নিরাপদ: এই হোস্টে সব .php ফাইল এই পেজে রিডাইরেক্ট করা আছে।<br>© 2026 MovieVerse</div>
+</div>
+</body>
+</html>

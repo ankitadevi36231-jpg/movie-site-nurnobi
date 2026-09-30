@@ -1,0 +1,10 @@
+# Local preview stack (PHP + MariaDB binaries/data — 487MB, GitHub limit ছাড়ায়)
+_tools/
+
+# Logs
+*.log
+
+# OS / editor junk
+Thumbs.db
+desktop.ini
+.DS_Store

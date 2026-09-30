@@ -1,0 +1,15 @@
+# MovieVerse — Apache config (XAMPP / cPanel দুটোতেই কাজ করে)
+Options -Indexes
+
+# সেনসিটিভ ফাইল ব্লক
+<FilesMatch "\.(sql|log|md|json)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ইনস্টল শেষ হলে install.php-এর "Delete install.php" বাটন দিয়ে ফাইলটা মুছে ফেলুন
